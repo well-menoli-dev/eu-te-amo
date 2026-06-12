@@ -35,9 +35,9 @@ const photoPaths = [
 const declaration = `
 Desde 07/10/2016, eu descobri que o amor verdadeiro também sabe ser leve, e que você, Rayane, tinha um lugar especial preparado no meu coração.
 Eu descobri que ele pode começar num sorriso e continuar por anos, como uma casa acesa por dentro.
-Eu descobri que, ao seu lado, até os dias comuns ganham alma.
-Você chegou como quem não faz barulho, mas muda tudo.
-Chegou com a delicadeza de quem toca o mundo sem ferir.
+Eu descobri que, ao seu lado, até os dias comuns ganham alma e viram lembrança da oração que eu tenho com você.
+Você chegou sem fazer barulho, mas mudou tudo.
+Você chegou com delicadeza, tocando a minha vida sem ferir nada em mim.
 E ficou.
 Ficou no meu pensamento, na minha rotina, no jeito como eu entendo o futuro.
 Ficou no meu coração como aquilo que nunca mais eu quis perder.
@@ -49,15 +49,15 @@ Eu amo a forma como você faz o ordinário parecer precioso.
 Eu amo a sua presença porque ela não apenas ocupa espaço.
 Ela faz morada.
 Ao seu lado, eu aprendi que companheirismo não é só andar junto.
-É escolher o mesmo lado da história, mesmo quando o vento muda.
+É escolher você de novo, mesmo quando o vento muda.
 É dividir silêncio, risada, planos e também os dias em que o coração precisa de colo.
 É saber que eu posso descansar porque você existe.
 Eu sou grato por cada lembrança que construímos.
 Sou grato pelos detalhes pequenos que só o amor percebe.
 Sou grato pelos dias em que a sua mão encontrou a minha.
 Sou grato pelas conversas, pelos olhares e pelas certezas que nasceram devagar.
-Sou grato porque você é resposta.
-Resposta de uma oração que eu fiz a Deus.
+Sou grato porque você é a resposta.
+Você é a resposta de uma oração que eu fiz a Deus.
 Eu pedi alguém especial para dividir os dias comigo, e Ele me enviou você.
 E desde então eu entendi que algumas bênçãos chegam com nome, rosto e abraço.
 No dia 07/12/2024, quando eu e você dissemos sim no casamento, meu coração teve a prova mais bonita da própria vida.
@@ -73,7 +73,7 @@ A mulher que faz o amor parecer algo concreto, vivo, possível.
 Com você, eu sonho sem medo.
 Sonho com uma casa cheia de paz.
 Sonho com mesas simples e risadas sinceras.
-Sonho com viagens, vitórias, recomeços e amanheceres que a gente ainda vai chamar de nossos.
+Sonho com viagens, vitórias, recomeços e amanheceres que eu ainda vou chamar de nossos ao seu lado.
 Sonho com uma vida longa ao seu lado.
 Uma vida onde cada capítulo tenha o calor da sua companhia.
 Se hoje é Dia dos Namorados, eu quero celebrar mais do que uma data.
@@ -179,7 +179,7 @@ function goToSlide(index, userAction = false) {
   const nextImage = new Image();
   nextImage.onload = () => {
     elements.galleryImage.src = imagePath;
-    elements.galleryImage.alt = `Momento ${currentIndex + 1} de nós`;
+    elements.galleryImage.alt = `Momento ${currentIndex + 1} de nós dois`;
     elements.photoText.textContent = caption;
     elements.photoCounter.textContent = formatCounter(currentIndex, photoPaths.length);
     updateDots();
