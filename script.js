@@ -33,7 +33,7 @@ const photoPaths = [
 ].map((path) => encodeURI(path));
 
 const declaration = `
-Desde 07/10/2016, eu descobri que o amor verdadeiro também sabe ser leve.
+Desde 07/10/2016, eu descobri que o amor verdadeiro também sabe ser leve, e que Rayane tinha um lugar especial preparado em mim.
 Eu descobri que ele pode começar num sorriso e continuar por anos, como uma casa acesa por dentro.
 Eu descobri que, ao seu lado, até os dias comuns ganham alma.
 Você chegou como quem não faz barulho, mas muda tudo.
@@ -60,7 +60,7 @@ Sou grato porque você é resposta.
 Resposta de uma oração que eu fiz a Deus.
 Eu pedi alguém especial para dividir os dias comigo, e Ele me enviou você.
 E desde então eu entendi que algumas bênçãos chegam com nome, rosto e abraço.
-No dia 07/12/2024, quando dissemos sim no casamento, meu coração teve a prova mais bonita da própria vida.
+No dia 07/12/2024, quando Rayane e Wellington disseram sim no casamento, meu coração teve a prova mais bonita da própria vida.
 Mas a verdade é que o meu sim já vinha acontecendo muito antes.
 Ele vinha acontecendo desde o primeiro cuidado.
 Desde o primeiro gesto.
@@ -85,7 +85,7 @@ Minha alegria mais serena.
 Meu abrigo mais bonito.
 Meu amor mais verdadeiro.
 E, se eu pudesse resumir a minha vida com você em uma só certeza, eu diria isto:
-ao seu lado, até o tempo aprende a ser gentil.
+ao seu lado, até o tempo aprende a ser gentil, Rayane.
 `.trim();
 
 const elements = {
