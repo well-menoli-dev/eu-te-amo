@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Para o amor da minha vida</title>
+    <meta
+      name="description"
+      content="Um site romântico e emocionante para homenagear sua esposa no Dia dos Namorados."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-top"></div>
+    <div class="ambient ambient-bottom"></div>
+
+    <div class="floating-art floating-left">
+      <img src="PNG%20Fundo/coracao%20translucido.png" alt="" aria-hidden="true" />
+    </div>
+    <div class="floating-art floating-right">
+      <img src="PNG%20Fundo/rosas.png" alt="" aria-hidden="true" />
+    </div>
+    <div class="floating-art floating-center-left">
+      <img src="PNG%20Fundo/coracao%20com%20flecha.png" alt="" aria-hidden="true" />
+    </div>
+    <div class="floating-art floating-center-right">
+      <img src="PNG%20Fundo/chuva%20de%20coracao.png" alt="" aria-hidden="true" />
+    </div>
+
+    <div id="sparkles" aria-hidden="true"></div>
+    <div id="heart-rain" aria-hidden="true"></div>
+    <div id="cursor-hearts" aria-hidden="true"></div>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Dia dos Namorados</p>
+          <h1>Para o amor da minha vida</h1>
+          <p class="subtitle">
+            Uma página feita para celebrar a mulher que transformou meus dias em
+            lar, meu coração em morada e a minha história em resposta de oração.
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="start-button">Iniciar a experiência</button>
+            <button class="secondary" id="music-button" type="button">
+              Música: desligada
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery-section" id="gallery-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Nossa história em imagens</p>
+          <h2>Galeria principal</h2>
+          <p>
+            Cada foto abre um pedaço da minha declaração. Um passo de cada vez,
+            como quem revê o amor com o cuidado de quem sabe o quanto ele é raro.
+          </p>
+        </div>
+
+        <div class="gallery-shell reveal">
+          <div class="gallery-frame" id="gallery-frame">
+            <img id="gallery-image" alt="" />
+            <div class="photo-glow"></div>
+          </div>
+
+          <div class="gallery-copy">
+            <p class="photo-counter" id="photo-counter">01 / 01</p>
+            <p class="photo-text" id="photo-text"></p>
+            <div class="gallery-controls">
+              <button class="ghost" id="prev-button" type="button">Anterior</button>
+              <button class="ghost" id="next-button" type="button">Próxima</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" id="dots" aria-label="Navegação da galeria"></div>
+      </section>
+
+      <section class="moments-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Memórias que florescem</p>
+          <h2>Nossos Momentos</h2>
+          <p>
+            Uma colagem para guardar a beleza de tudo o que já vivemos e de tudo
+            o que ainda queremos viver lado a lado.
+          </p>
+        </div>
+
+        <div class="mosaic reveal" id="mosaic"></div>
+      </section>
+
+      <section class="closing-section">
+        <div class="closing-card reveal">
+          <p class="eyebrow">Encerramento</p>
+          <h2>Obrigado por existir.<br />Obrigado por caminhar ao meu lado.</h2>
+          <p class="closing-text">
+            Feliz Dia dos Namorados, meu amor. Você é a resposta da oração que eu
+            fiz a Deus para ter alguém especial comigo, e Ele me enviou você.
+          </p>
+          <div class="ornament-strip" aria-hidden="true">
+            <img src="Fotos/PNG%20Fundo/coracao%20com%20flecha.png" alt="" />
+            <img src="Fotos/PNG%20Fundo/coracao%20translucido.png" alt="" />
+            <img src="Fotos/PNG%20Fundo/chuva%20de%20coracao.png" alt="" />
+            <img src="Fotos/PNG%20Fundo/rosas.png" alt="" />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="mosaic-item-template">
+      <article class="mosaic-item">
+        <img alt="" />
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
