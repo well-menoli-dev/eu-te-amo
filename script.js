@@ -104,6 +104,7 @@ const elements = {
   heartRain: document.getElementById("heart-rain"),
   cursorHearts: document.getElementById("cursor-hearts"),
   mosaic: document.getElementById("mosaic"),
+  music: document.getElementById("background-music"),
 };
 
 document.documentElement.classList.add("js");
@@ -117,7 +118,6 @@ let sparkleTimer = null;
 let rainTimer = null;
 let cursorCooldown = 0;
 let musicEnabled = false;
-let musicAudio = null;
 let swipeStartX = 0;
 let swipeStartY = 0;
 let swipeActive = false;
@@ -259,36 +259,17 @@ function setupAmbientEffects() {
   });
 }
 
-function createTone(frequency, startTime, duration, type = "triangle", gainValue = 0.025) {
-  const oscillator = audioContext.createOscillator();
-  const gainNode = audioContext.createGain();
-  oscillator.type = type;
-  oscillator.frequency.value = frequency;
-  gainNode.gain.value = 0;
-  oscillator.connect(gainNode);
-  gainNode.connect(audioContext.destination);
-  oscillator.start(startTime);
-  gainNode.gain.linearRampToValueAtTime(gainValue, startTime + 0.02);
-  gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
-  oscillator.stop(startTime + duration + 0.05);
-}
-
 function startMusic() {
-  if (!musicAudio) {
-    musicAudio = new Audio("Fotos/Musica/1.mp3");
-    musicAudio.loop = true;
-    musicAudio.preload = "auto";
-    musicAudio.volume = 0.7;
-  }
-
-  musicAudio.currentTime = 0;
-  return musicAudio.play();
+  if (!elements.music) return Promise.reject(new Error("Música não encontrada."));
+  elements.music.currentTime = 0;
+  elements.music.volume = 0.75;
+  return elements.music.play();
 }
 
 function stopMusic() {
-  if (!musicAudio) return;
-  musicAudio.pause();
-  musicAudio.currentTime = 0;
+  if (!elements.music) return;
+  elements.music.pause();
+  elements.music.currentTime = 0;
 }
 
 function setMusicState(enabled) {
@@ -298,6 +279,7 @@ function setMusicState(enabled) {
     startMusic().catch(() => {
       musicEnabled = false;
       elements.musicButton.textContent = "Música: desligada";
+      alert("Não consegui iniciar a música. Tente novamente ou verifique se o arquivo 1.mp3 está acessível.");
     });
   } else {
     stopMusic();
