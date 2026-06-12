@@ -248,6 +248,10 @@ img {
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(255, 234, 238, 0.94));
   box-shadow: var(--shadow);
   border: 1px solid rgba(191, 30, 63, 0.1);
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .gallery-frame::after {
@@ -479,12 +483,17 @@ img {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -569,5 +578,21 @@ img {
 
   .floating-art img {
     width: 35vw;
+  }
+
+  .gallery-frame {
+    min-height: 360px;
+  }
+
+  .gallery-copy {
+    padding: 1.1rem;
+  }
+
+  .photo-text {
+    font-size: 1rem;
+  }
+
+  .ornament-strip img {
+    width: min(22vw, 72px);
   }
 }

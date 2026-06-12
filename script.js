@@ -106,6 +106,8 @@ const elements = {
   mosaic: document.getElementById("mosaic"),
 };
 
+document.documentElement.classList.add("js");
+
 const sentenceChunks = splitSentences(declaration);
 const loveChunks = splitIntoChunks(sentenceChunks, photoPaths.length);
 
@@ -303,6 +305,11 @@ function setMusicState(enabled) {
 }
 
 function revealOnScroll() {
+  if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll(".reveal").forEach((item) => item.classList.add("visible"));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -337,39 +344,58 @@ function init() {
     }
   });
 
-  elements.galleryFrame.addEventListener("pointerdown", (event) => {
-    swipeStartX = event.clientX;
-    swipeStartY = event.clientY;
-    swipeActive = true;
-  });
+  const getPoint = (event) => {
+    if (event.touches && event.touches[0]) return event.touches[0];
+    if (event.changedTouches && event.changedTouches[0]) return event.changedTouches[0];
+    return event;
+  };
 
-  elements.galleryFrame.addEventListener("pointermove", (event) => {
+  const startSwipe = (event) => {
+    const point = getPoint(event);
+    swipeStartX = point.clientX;
+    swipeStartY = point.clientY;
+    swipeActive = true;
+  };
+
+  const moveSwipe = (event) => {
     if (!swipeActive) return;
-    const deltaX = event.clientX - swipeStartX;
-    const deltaY = event.clientY - swipeStartY;
+    const point = getPoint(event);
+    const deltaX = point.clientX - swipeStartX;
+    const deltaY = point.clientY - swipeStartY;
     if (Math.abs(deltaX) > 12 && Math.abs(deltaX) > Math.abs(deltaY)) {
       elements.galleryFrame.style.transform = `translateX(${deltaX * 0.03}px)`;
     }
-  });
+  };
 
-  const endSwipe = (event) => {
+  const finishSwipe = (event) => {
     if (!swipeActive) return;
+    const point = getPoint(event);
     swipeActive = false;
     elements.galleryFrame.style.transform = "";
-    const deltaX = event.clientX - swipeStartX;
-    const deltaY = event.clientY - swipeStartY;
+    const deltaX = point.clientX - swipeStartX;
+    const deltaY = point.clientY - swipeStartY;
     if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY)) {
       if (deltaX < 0) goToSlide(currentIndex + 1, true);
       else goToSlide(currentIndex - 1, true);
     }
   };
 
-  elements.galleryFrame.addEventListener("pointerup", endSwipe);
+  elements.galleryFrame.addEventListener("pointerdown", startSwipe);
+  elements.galleryFrame.addEventListener("pointermove", moveSwipe);
+  elements.galleryFrame.addEventListener("pointerup", finishSwipe);
   elements.galleryFrame.addEventListener("pointercancel", () => {
     swipeActive = false;
     elements.galleryFrame.style.transform = "";
   });
   elements.galleryFrame.addEventListener("pointerleave", () => {
+    swipeActive = false;
+    elements.galleryFrame.style.transform = "";
+  });
+
+  elements.galleryFrame.addEventListener("touchstart", startSwipe, { passive: true });
+  elements.galleryFrame.addEventListener("touchmove", moveSwipe, { passive: true });
+  elements.galleryFrame.addEventListener("touchend", finishSwipe);
+  elements.galleryFrame.addEventListener("touchcancel", () => {
     swipeActive = false;
     elements.galleryFrame.style.transform = "";
   });
