@@ -117,8 +117,7 @@ let sparkleTimer = null;
 let rainTimer = null;
 let cursorCooldown = 0;
 let musicEnabled = false;
-let audioContext = null;
-let musicTimer = null;
+let musicAudio = null;
 let swipeStartX = 0;
 let swipeStartY = 0;
 let swipeActive = false;
@@ -275,30 +274,31 @@ function createTone(frequency, startTime, duration, type = "triangle", gainValue
 }
 
 function startMusic() {
-  audioContext ??= new (window.AudioContext || window.webkitAudioContext)();
-  const pattern = [261.63, 329.63, 392, 523.25, 392, 329.63, 293.66, 349.23];
-  let step = 0;
-  const schedule = () => {
-    const now = audioContext.currentTime + 0.03;
-    createTone(pattern[step % pattern.length], now, 0.52, "triangle", 0.018);
-    createTone(pattern[(step + 2) % pattern.length] / 2, now, 0.78, "sine", 0.01);
-    step += 1;
-  };
+  if (!musicAudio) {
+    musicAudio = new Audio("Fotos/Musica/1.mp3");
+    musicAudio.loop = true;
+    musicAudio.preload = "auto";
+    musicAudio.volume = 0.7;
+  }
 
-  schedule();
-  musicTimer = setInterval(schedule, 520);
+  musicAudio.currentTime = 0;
+  return musicAudio.play();
 }
 
 function stopMusic() {
-  clearInterval(musicTimer);
-  musicTimer = null;
+  if (!musicAudio) return;
+  musicAudio.pause();
+  musicAudio.currentTime = 0;
 }
 
 function setMusicState(enabled) {
   musicEnabled = enabled;
   elements.musicButton.textContent = `Música: ${enabled ? "ligada" : "desligada"}`;
   if (enabled) {
-    startMusic();
+    startMusic().catch(() => {
+      musicEnabled = false;
+      elements.musicButton.textContent = "Música: desligada";
+    });
   } else {
     stopMusic();
   }
