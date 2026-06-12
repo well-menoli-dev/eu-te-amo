@@ -306,7 +306,6 @@ function revealOnScroll() {
 
 function init() {
   renderDots();
-  createMosaic();
   revealOnScroll();
   setupAmbientEffects();
   goToSlide(0);
@@ -386,6 +385,14 @@ function init() {
     if (event.key === "ArrowRight") goToSlide(currentIndex + 1, true);
     if (event.key === "ArrowLeft") goToSlide(currentIndex - 1, true);
   });
+
+  window.addEventListener("load", () => {
+    createMosaic();
+  });
+
+  setTimeout(() => {
+    if (!elements.mosaic.children.length) createMosaic();
+  }, 400);
 }
 
 init();

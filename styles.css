@@ -217,6 +217,8 @@ img {
 .gallery-section,
 .moments-section {
   padding: 4rem 0 1rem;
+  position: relative;
+  z-index: 3;
 }
 
 .section-heading {
@@ -335,6 +337,8 @@ img {
   grid-template-columns: repeat(12, 1fr);
   gap: 0.9rem;
   margin-top: 1rem;
+  position: relative;
+  z-index: 4;
 }
 
 .mosaic-item {
@@ -359,6 +363,15 @@ img {
   height: 100%;
   object-fit: cover;
   transform: scale(1.02);
+}
+
+.mosaic::before {
+  content: "";
+  position: absolute;
+  inset: -0.6rem;
+  border-radius: 2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 238, 241, 0.4));
+  z-index: -1;
 }
 
 .mosaic-item:nth-child(1) { grid-column: span 5; min-height: 260px; }
@@ -569,11 +582,21 @@ img {
   }
 
   .mosaic {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin-top: 0.8rem;
   }
 
   .mosaic-item:nth-child(n) {
-    grid-column: span 6;
+    grid-column: span 1;
+    min-height: 145px;
+  }
+
+  .mosaic-item:nth-child(1),
+  .mosaic-item:nth-child(4),
+  .mosaic-item:nth-child(7) {
+    grid-column: span 2;
+    min-height: 190px;
   }
 
   .floating-art img {
@@ -594,5 +617,13 @@ img {
 
   .ornament-strip img {
     width: min(22vw, 72px);
+  }
+
+  .moments-section {
+    padding-top: 3rem;
+  }
+
+  .section-heading p {
+    max-width: 32rem;
   }
 }
